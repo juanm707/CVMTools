@@ -24,4 +24,5 @@
     <string name="count_vines">%s vines</string>
     <string name="save">Save</string>
     <string name="upload">Upload</string>
+    <string name="share">Share</string>
 </resources>

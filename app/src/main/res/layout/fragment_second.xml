@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fab_margin"
         android:enabled="false"
-        android:text="@string/upload"
+        android:text="@string/share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline1" />

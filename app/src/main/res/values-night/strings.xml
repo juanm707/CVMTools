@@ -11,6 +11,7 @@
     <string name="row">Row</string>
     <string name="save">Save</string>
     <string name="upload">Upload</string>
+    <string name="share">Share</string>
 
     <style name="row_count"># {row} {count} cnt</style>
 </resources>

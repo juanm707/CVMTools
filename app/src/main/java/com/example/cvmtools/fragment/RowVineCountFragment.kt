@@ -95,7 +95,7 @@ class RowVineCountFragment : Fragment() {
     private fun setUpAbleToUpload() {
         binding.uploadButton.isEnabled = viewModel.getUploadStatus()
         binding.uploadButton.setOnClickListener {
-            share()
+            onShare()
         }
     }
 
@@ -107,28 +107,25 @@ class RowVineCountFragment : Fragment() {
         return listOf()
     }
 
-    private fun share() {
+    private fun onShare() {
         //generate data
-        val data = StringBuilder()
-        data.append("Time,Distance")
-        for (i in 0..4) {
-            data.append("\n$i,${i*i}")
-        }
+        val data = viewModel.onShareData()
 
         try {
             //saving the file into device
-            val out: FileOutputStream = (requireContext().openFileOutput("data.csv", Context.MODE_PRIVATE) ?: null) as FileOutputStream
+            val fileName = "${viewModel.vineyard.value}_Row_Vine_Counts.csv"
+            val out: FileOutputStream = (requireContext().openFileOutput(fileName, Context.MODE_PRIVATE) ?: null) as FileOutputStream
             out.write(data.toString().toByteArray())
             out.close()
 
             //exporting
             val context: Context = requireContext()
-            val fileLocation = File(requireContext().filesDir, "data.csv")
+            val fileLocation = File(requireContext().filesDir, fileName)
             val path: Uri = FileProvider.getUriForFile(context, "com.example.cvmtools", fileLocation)
 
             val fileIntent = Intent(Intent.ACTION_SEND)
             fileIntent.type = "text/csv"
-            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Data")
+            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "${viewModel.vineyard.value} Row Vine Counts")
             fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             fileIntent.putExtra(Intent.EXTRA_STREAM, path)
 

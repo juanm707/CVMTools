@@ -106,6 +106,18 @@ class RowVineCountViewModel : ViewModel() {
         _rowCount.value = newMap
     }
 
+    fun onShareData(): StringBuilder {
+        // return the data to be shared for csv file
+        val data = StringBuilder()
+        data.append("Block,Row,VineCount")
+        blockRowCounts.forEach { (block, rowCount) ->
+            rowCount.rowVineCounts.forEach { (row, count) ->
+                data.append("\n$block,$row,$count")
+            }
+        }
+        return data
+    }
+
     private class BlockRowCount(val rowVineCounts: MutableMap<Int, Int>) {
 
     }
