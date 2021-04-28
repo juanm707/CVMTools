@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="vineyards">
+        <item>Blanton</item>
+        <item>Blueline</item>
+        <item>Hourglass</item>
+        <item>Tournahu</item>
+    </string-array>
+
+    <string-array name="Blanton">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="Blueline">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8a</item>
+        <item>8b</item>
+        <item>9a</item>
+        <item>9b</item>
+        <item>10</item>
+        <item>11</item>
+    </string-array>
+
+    <string-array name="Hourglass">
+        <item>1 Lower</item>
+        <item>1 Upper</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="Tournahu">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>

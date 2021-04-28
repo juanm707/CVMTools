@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/selectTaskFragment">
+    <fragment
+        android:id="@+id/selectTaskFragment"
+        android:name="com.example.cvmtools.fragment.SelectTaskFragment"
+        android:label="CVM Tools"
+        tools:layout="@layout/fragment_first" >
+        <action
+            android:id="@+id/action_selectTaskFragment_to_rowVineCountFragment"
+            app:destination="@id/rowVineCountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rowVineCountFragment"
+        android:name="com.example.cvmtools.fragment.RowVineCountFragment"
+        android:label="Row Vine Count"
+        tools:layout="@layout/fragment_second" >
+        <action
+            android:id="@+id/action_rowVineCountFragment_to_selectTaskFragment"
+            app:destination="@id/selectTaskFragment" />
+        <action
+            android:id="@+id/action_rowVineCountFragment_to_editRowVineCountFragment"
+            app:destination="@id/editRowVineCountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRowVineCountFragment"
+        android:name="com.example.cvmtools.fragment.EditRowVineCountFragment"
+        android:label="@string/vineyard_block"
+        tools:layout="@layout/fragment_edit_row_vine_count">
+        <argument
+            android:name="vineyard"
+            app:argType="string" />
+        <argument
+            android:name="block"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_editRowVineCountFragment_to_rowVineCountFragment"
+            app:destination="@id/rowVineCountFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">CVM Tools</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="select_a_task">Select a task</string>
+    <string name="row_vine_count">Row Vine Count</string>
+    <string name="vineyard">Vineyard</string>
+    <string name="block">Block</string>
+    <string name="blocks">Blocks</string>
+    <string name="vineyard_block">{vineyard} - Block {block}</string>
+    <string name="rows">Rows</string>
+    <string name="row_number">Row number</string>
+    <string name="count">Count</string>
+    <string name="row">Row</string>
+    <string name="row_count">#%s %s cnt</string>
+    <string name="row_hashtag">#%s</string>
+    <string name="count_vines">%s vines</string>
+    <string name="save">Save</string>
+    <string name="upload">Upload</string>
+</resources>

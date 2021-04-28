@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="select_a_task">Select a task</string>
+    <string name="row_vine_count">Row Vine Count</string>
+    <string name="vineyard">Vineyard</string>
+    <string name="block">Block</string>
+    <string name="blocks">Blocks</string>
+    <string name="rows">Rows</string>
+    <string name="row_number">Row number</string>
+    <string name="count">Count</string>
+    <string name="row">Row</string>
+    <string name="save">Save</string>
+    <string name="upload">Upload</string>
+
+    <style name="row_count"># {row} {count} cnt</style>
+</resources>
