@@ -115,21 +115,24 @@ class RowVineCountFragment : Fragment() {
             //saving the file into device
             val fileName = "${viewModel.vineyard.value}_Row_Vine_Counts.csv"
             val out: FileOutputStream = (requireContext().openFileOutput(fileName, Context.MODE_PRIVATE) ?: null) as FileOutputStream
-            out.write(data.toString().toByteArray())
+            out.write(data.toString().toByteArray(Charsets.UTF_8))
             out.close()
 
-            //exporting
-            val context: Context = requireContext()
             val fileLocation = File(requireContext().filesDir, fileName)
-            val path: Uri = FileProvider.getUriForFile(context, "com.example.cvmtools", fileLocation)
+            val path: Uri = FileProvider.getUriForFile(requireContext(), "com.example.cvmtools.fileprovider", fileLocation)
 
-            val fileIntent = Intent(Intent.ACTION_SEND)
-            fileIntent.type = "text/csv"
-            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "${viewModel.vineyard.value} Row Vine Counts")
-            fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            fileIntent.putExtra(Intent.EXTRA_STREAM, path)
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "Hello there, ${viewModel.vineyard.value} Row Vine Counts")
+                putExtra(Intent.EXTRA_SUBJECT, "${viewModel.vineyard.value} Row Vine Counts")
+                putExtra(Intent.EXTRA_STREAM, path)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                type = "text/csv"
+            }
 
-            startActivity(Intent.createChooser(fileIntent, "Send mail"))
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
