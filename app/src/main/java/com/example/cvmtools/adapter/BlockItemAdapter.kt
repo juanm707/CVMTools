@@ -28,10 +28,13 @@ class BlockItemAdapter(private val blockNameList: List<String>, private val vine
     }
 
     override fun onBindViewHolder(holder: BlockItemViewHolder, position: Int) {
+
         holder.blockName.text = blockNameList[position]
 
         if (blockStatus[blockNameList[position]] == true)
             holder.statusImage.setImageResource(R.drawable.ic_baseline_check_circle_24)
+        else
+            holder.statusImage.setImageResource(R.drawable.ic_baseline_highlight_off_24)
 
         holder.editButton.setOnClickListener { view ->
             val action = RowVineCountFragmentDirections.actionRowVineCountFragmentToEditRowVineCountFragment(
