@@ -20,7 +20,9 @@
         tools:layout="@layout/fragment_second" >
         <action
             android:id="@+id/action_rowVineCountFragment_to_selectTaskFragment"
-            app:destination="@id/selectTaskFragment" />
+            app:destination="@id/selectTaskFragment"
+            app:popUpTo="@id/selectTaskFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_rowVineCountFragment_to_editRowVineCountFragment"
             app:destination="@id/editRowVineCountFragment" />
@@ -38,6 +40,8 @@
             app:argType="string" />
         <action
             android:id="@+id/action_editRowVineCountFragment_to_rowVineCountFragment"
-            app:destination="@id/rowVineCountFragment" />
+            app:destination="@id/rowVineCountFragment"
+            app:popUpTo="@id/rowVineCountFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
