@@ -19,6 +19,7 @@ import com.example.cvmtools.R
 import com.example.cvmtools.adapter.RowVineCountAdapter
 import com.example.cvmtools.databinding.FragmentEditRowVineCountBinding
 import com.example.cvmtools.model.RowVineCountViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 
 class EditRowVineCountFragment : Fragment(), TextView.OnEditorActionListener {
@@ -65,6 +66,8 @@ class EditRowVineCountFragment : Fragment(), TextView.OnEditorActionListener {
             else {
                 viewModel.addRowVineCount(Integer.parseInt(binding.rowNumberEdit.text.toString()), Integer.parseInt(binding.rowCountEdit.text.toString()))
                 recyclerView.scrollToPosition(viewModel.getLastPosition()) // scroll to last added
+                binding.rowNumberEdit.text?.clear()
+                binding.rowCountEdit.text?.clear()
                 viewModel.setFalseBlockStatus(block) // modify so need to save again
             }
             return true

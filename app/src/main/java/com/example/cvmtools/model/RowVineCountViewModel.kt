@@ -8,7 +8,7 @@ import java.text.FieldPosition
 
 class RowVineCountViewModel : ViewModel() {
 
-    private val _vineyard = MutableLiveData<String>()
+    private val _vineyard = MutableLiveData<String>("")
     val vineyard: LiveData<String> = _vineyard
 
     private val _blocks = MutableLiveData<List<String>>(listOf())

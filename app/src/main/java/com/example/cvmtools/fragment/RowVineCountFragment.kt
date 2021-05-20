@@ -40,6 +40,9 @@ class RowVineCountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.blocksFinished.adapter = BlockItemAdapter(viewModel.blocks.value!!, viewModel.vineyard.value ?: "", viewModel.getBlockStatus())
         return binding.root
     }
 
@@ -48,8 +51,6 @@ class RowVineCountFragment : Fragment() {
 
         // Add vineyards to drop down menu
         setupVineyardDropDown()
-
-        setUpRecyclerView()
 
         setUpAbleToUpload()
 
@@ -61,16 +62,6 @@ class RowVineCountFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun setUpRecyclerView() {
-        recyclerView = binding.blocksFinished
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.blocks.observe(viewLifecycleOwner, { newBlocks ->
-            recyclerView.adapter = BlockItemAdapter(newBlocks, viewModel.vineyard.value
-                    ?: "", viewModel.getBlockStatus())
-        })
-        recyclerView.setHasFixedSize(true)
     }
 
     private fun setupVineyardDropDown() {
