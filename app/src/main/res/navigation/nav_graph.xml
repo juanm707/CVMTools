@@ -11,6 +11,10 @@
         tools:layout="@layout/fragment_first" >
         <action
             android:id="@+id/action_selectTaskFragment_to_rowVineCountFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
             app:destination="@id/rowVineCountFragment" />
     </fragment>
     <fragment

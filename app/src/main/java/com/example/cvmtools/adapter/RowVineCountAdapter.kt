@@ -36,7 +36,7 @@ class RowVineCountAdapter(private val rowCounts: MutableMap<Int, Int>, private v
     override fun onBindViewHolder(holder: RowVineCountItemViewHolder, position: Int) {
         val key = mapKeys.elementAt(position)
         holder.rowNumber.text = context.getString(R.string.row_hashtag, key.toString())
-        holder.vineCount.text = context.getString(R.string.count_vines, rowCounts[key].toString())
+        holder.vineCount.text = context.resources.getQuantityString(R.plurals.numberOfVineCounts, rowCounts[key]!!, rowCounts[key]!!)
         holder.deleteButton.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
                 mListener.onDeleteItem(position, key)
