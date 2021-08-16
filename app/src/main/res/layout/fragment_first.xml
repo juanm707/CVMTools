@@ -22,10 +22,10 @@
         android:id="@+id/materialCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="240dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +42,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/select_a_task"
+                android:textStyle="bold"
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -49,10 +50,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/row_vine_count_button"
                 android:layout_width="0dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="8dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="@dimen/fab_margin"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/welcome_text">
@@ -68,19 +69,63 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:text="@string/row_vine_count"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/calculator"
+                        app:layout_constraintEnd_toStartOf="@id/calculatorIcon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/calculator"
+                        android:id="@+id/calculatorIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
+                        android:layout_marginEnd="1dp"
                         android:adjustViewBounds="true"
                         android:src="@drawable/calculator"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/word_order_pdf_generator"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/row_vine_count_button">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/foreground_gradient">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="Generate Work Order"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/pdfIcon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/pdfIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="12dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/pdf"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

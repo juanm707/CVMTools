@@ -29,7 +29,11 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_rowVineCountFragment_to_editRowVineCountFragment"
-            app:destination="@id/editRowVineCountFragment" />
+            app:destination="@id/editRowVineCountFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"/>
     </fragment>
     <fragment
         android:id="@+id/editRowVineCountFragment"
