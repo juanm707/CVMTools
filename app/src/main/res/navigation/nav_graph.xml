@@ -16,6 +16,9 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:destination="@id/rowVineCountFragment" />
+        <action
+            android:id="@+id/action_selectTaskFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
     </fragment>
     <fragment
         android:id="@+id/rowVineCountFragment"
@@ -52,4 +55,9 @@
             app:popUpTo="@id/rowVineCountFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.cvmtools.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
 </navigation>
