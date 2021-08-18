@@ -43,4 +43,21 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <string-array name="productTypes">
+        <item>None</item>
+        <item>Fungicide</item>
+        <item>Herbicide</item>
+        <item>Insecticide</item>
+        <item>Injection</item>
+        <item>Pesticide</item>
+    </string-array>
+
+    <string-array name="uomTypes">
+        <item>None</item>
+        <item>Gallons</item>
+        <item>Pounds</item>
+        <item>Fluid Ounces</item>
+        <item>Ounces</item>
+    </string-array>
 </resources>

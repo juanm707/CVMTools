@@ -38,5 +38,11 @@
         <item quantity="other">%d vines</item>
     </plurals>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="type">Type</string>
+    <string name="product">Product</string>
+    <string name="application_date_is">Application date is %s</string>
+    <string name="tank_size">Tank Size</string>
+    <string name="tanks">Tanks</string>
+    <string name="special_instructions">Special Instructions</string>
 </resources>
