@@ -30,11 +30,11 @@
                     android:layout_marginStart="20px"
                     android:layout_marginTop="40px"
                     android:ellipsize="end"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:maxLines="1"
                     android:textColor="@color/primaryColorVariant"
                     android:textSize="40px"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="Martinez Vineyard Management" />
 
                 <TextView
@@ -42,12 +42,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20px"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:text="Work Order"
                     android:textColor="@color/black"
                     android:textSize="40px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
             </LinearLayout>
 
@@ -63,10 +63,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
                     android:layout_marginEnd="20px"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:textColor="@color/primaryColorVariant"
                     android:textSize="40px"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="Fungicide S + Agrimek SC" />
 
                 <TextView
@@ -74,11 +74,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20px"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:textColor="@color/black"
                     android:textSize="40px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="270 Fungicide Application" />
 
             </LinearLayout>
@@ -93,12 +93,12 @@
             android:layout_marginTop="20px"
             android:layout_marginEnd="20px"
             android:background="@color/work_order_grey_fill"
-            android:fontFamily="@font/raleway"
+            android:fontFamily="@font/montserrat"
             android:padding="4px"
             android:textColor="@color/black"
             android:textSize="30px"
             android:textStyle="bold"
-            app:fontFamily="@font/raleway"
+            app:fontFamily="@font/montserrat"
             tools:text="Date for Application 05/06/2021" />
 
         <LinearLayout
@@ -119,26 +119,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Location"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <TextView
                     android:id="@+id/location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:maxLines="1"
                     android:padding="4px"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="Outpost Winery, Angwin, Napa County, CA 95408" />
 
             </LinearLayout>
@@ -152,27 +152,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Treated Area"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <TextView
                     android:id="@+id/totalAcres"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4px"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="2.55 ac" />
 
             </LinearLayout>
@@ -196,13 +196,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Block(s)"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <ListView
                     android:id="@+id/blockList"
@@ -221,13 +221,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Area"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <ListView
                     android:id="@+id/blockAreaList"
@@ -257,13 +257,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Product(s)"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <ListView
                     android:id="@+id/productList"
@@ -282,13 +282,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="EPA #"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <ListView
                     android:id="@+id/epaList"
@@ -307,13 +307,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Purchased Product"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <ListView
                     android:id="@+id/purchasedProductList"
@@ -343,27 +343,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Tank Size"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <TextView
                     android:id="@+id/tankSize"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:maxLines="1"
                     android:padding="4px"
                     android:gravity="end"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="100.00 gal" />
 
             </LinearLayout>
@@ -377,27 +377,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Tanks"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <TextView
                     android:id="@+id/tanks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4px"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="2.55" />
 
 
@@ -412,27 +412,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="REI"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <TextView
                     android:id="@+id/rei"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4px"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="24 hrs" />
 
 
@@ -447,27 +447,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Application Method"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <TextView
                     android:id="@+id/applicationMethod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="start"
                     android:maxLines="1"
                     android:padding="4px"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="Ground" />
 
             </LinearLayout>
@@ -481,27 +481,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/work_order_grey_fill"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Special Instructions"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
                 <TextView
                     android:id="@+id/specialInstructions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="start"
                     android:maxLines="1"
                     android:padding="4px"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway"
+                    app:fontFamily="@font/montserrat"
                     tools:text="Read Chemical Labels!" />
 
 
@@ -529,13 +529,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Signature"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
             </LinearLayout>
 
@@ -547,13 +547,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/montserrat"
                     android:padding="4px"
                     android:text="Date"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
-                    app:fontFamily="@font/raleway" />
+                    app:fontFamily="@font/montserrat" />
 
             </LinearLayout>
 

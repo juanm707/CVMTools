@@ -23,6 +23,9 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:destination="@id/workOrderOptionsFragment" />
+        <action
+            android:id="@+id/action_selectTaskFragment_to_vehicleChecklistFragment"
+            app:destination="@id/vehicleChecklistFragment" />
     </fragment>
     <fragment
         android:id="@+id/rowVineCountFragment"
@@ -64,4 +67,9 @@
         android:name="com.example.cvmtools.fragment.WorkOrderOptionsFragment"
         android:label="Work Order"
         tools:layout="@layout/fragment_work_order_options" />
+    <fragment
+        android:id="@+id/vehicleChecklistFragment"
+        android:name="com.example.cvmtools.fragment.VehicleChecklistFragment"
+        android:label="Vehicle Inspection"
+        tools:layout="@layout/fragment_vehicle_checklist" />
 </navigation>

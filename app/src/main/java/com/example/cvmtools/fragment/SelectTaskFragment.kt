@@ -33,6 +33,10 @@ class SelectTaskFragment : Fragment() {
         binding.wordOrderPdfGenerator.setOnClickListener {
             findNavController().navigate(R.id.action_selectTaskFragment_to_workOrderOptionsFragment)
         }
+
+        binding.vehicleInspectionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_selectTaskFragment_to_vehicleChecklistFragment)
+        }
     }
 
     override fun onDestroyView() {

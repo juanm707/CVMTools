@@ -10,6 +10,6 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:textColor="@color/black"
-    android:fontFamily="@font/raleway"
-    app:fontFamily="@font/raleway"
+    android:fontFamily="@font/montserrat"
+    app:fontFamily="@font/montserrat"
     tools:text="01" />
