@@ -1,20 +1,27 @@
 package com.example.cvmtools.model
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
 class WorkOrderViewModel : ViewModel() {
+    private var workOrder = WorkOrder()
 
-    private val workOrder = WorkOrder()
+    private val _blocks = MutableLiveData<List<String>>(listOf())
+    val blocks: LiveData<List<String>> = _blocks
+
     var companyName = "Martinez Vineyard Management"
 
-    fun getWorkOrder(): WorkOrder {
-        return workOrder
+    fun clearWorkOrder() {
+        workOrder = WorkOrder()
+        _blocks.value = listOf()
     }
 
     fun setVineyard(vineyardSelected: String) {
         workOrder.vineyard = vineyardSelected
+        _blocks.value = getBlocksForVineyard(vineyardSelected)
     }
 
     fun setTankSize(size: String) {
@@ -148,9 +155,26 @@ class WorkOrderViewModel : ViewModel() {
         }
     }
 
+    fun addBlock(blockName: String): Boolean {
+        return if (workOrder.blockAndAcres.containsKey(blockName)) {
+            false
+        } else {
+            workOrder.blockAndAcres[blockName] = randomFloatAcres()
+            true
+        }
+    }
+
     fun removeProduct(productName: String): Boolean {
         return if (workOrder.productList.containsKey(productName)) {
             workOrder.productList.remove(productName)
+            true
+        } else
+            false
+    }
+
+    fun removeBlock(blockName: String): Boolean {
+        return if (workOrder.blockAndAcres.containsKey(blockName)) {
+            workOrder.blockAndAcres.remove(blockName)
             true
         } else
             false
@@ -195,11 +219,49 @@ class WorkOrderViewModel : ViewModel() {
         }
     }
 
+    fun getBlockNamesAndAcres(): List<String> {
+        return workOrder.blockAndAcres.map { block ->
+            "${block.key} ${block.value} ac"
+        }
+    }
+
+    fun getBlockNames(): List<String> {
+        return workOrder.blockAndAcres.map { block ->
+            block.key
+        }
+    }
+
+    fun getBlockAcres(): List<String> {
+        return workOrder.blockAndAcres.map { block ->
+            "${block.value} ac"
+        }
+    }
+
     fun getEPAsForProducts(): MutableList<String> {
         return MutableList(workOrder.productList.size) { "1234-567-AA"}
     }
 
     private fun roundTwoDecimals(value: Float): String {
         return "%.2f".format(value)
+    }
+
+    private fun getBlocksForVineyard(vineyard: String): List<String> {
+        return when (vineyard) {
+            "Blanton" -> listOf("1", "2", "3")
+            "Blueline" -> listOf("1", "2", "3", "4", "5", "6", "7", "8a", "8b", "9a", "9b", "10", "11")
+            "Hourglass" -> listOf("1 Upper", "1 Lower", "2", "3")
+            "Tournahu" -> listOf("1", "2", "3", "4", "5")
+            else -> {
+                listOf()
+            }
+        }
+    }
+
+    fun getTotalAcres(): Float {
+        return workOrder.blockAndAcres.map { block -> block.value }.sum()
+    }
+
+    private fun randomFloatAcres(): Float {
+        return (0..10).random().toFloat()
     }
 }

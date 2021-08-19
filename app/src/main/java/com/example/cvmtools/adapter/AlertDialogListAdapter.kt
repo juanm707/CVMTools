@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvmtools.R
 
-class AlertDialogListAdapter(private val context: Context, private val productAmountUOMList: List<String>) : RecyclerView.Adapter<AlertDialogListAdapter.AlertDialogListItemViewHolder>() {
+class AlertDialogListAdapter(private val context: Context, private val list: List<String>) : RecyclerView.Adapter<AlertDialogListAdapter.AlertDialogListItemViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -21,14 +21,14 @@ class AlertDialogListAdapter(private val context: Context, private val productAm
     }
 
     override fun onBindViewHolder(holder: AlertDialogListItemViewHolder, position: Int) {
-        val item = productAmountUOMList[position]
+        val item = list[position]
         holder.text.text = item
         holder.text.textSize = 16F
         holder.text.setPadding((16 * context.resources.displayMetrics.density).toInt(), 0, 0, (8 * context.resources.displayMetrics.density).toInt())
     }
 
     override fun getItemCount(): Int {
-        return productAmountUOMList.size
+        return list.size
     }
 
     class AlertDialogListItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

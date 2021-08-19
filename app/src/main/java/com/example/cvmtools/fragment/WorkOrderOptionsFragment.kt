@@ -11,6 +11,8 @@ import androidx.core.content.FileProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvmtools.R
 import com.example.cvmtools.adapter.AlertDialogListAdapter
@@ -48,11 +50,16 @@ class WorkOrderOptionsFragment : Fragment() {
         setUpVineyardDropDown()
         setUpTypeDropDown()
         setUpUOMDropDown()
+        setUpBlockDropDown()
         setUpDateSelect()
         binding.generateWoButton.setOnClickListener {
             generateWorkOrderPDF()
         }
+        binding.clearWorkOrderButton.setOnClickListener {
+            clearWorkOrder()
+        }
         setProductButtons()
+        setBlockButtons()
     }
 
     override fun onDestroyView() {
@@ -61,7 +68,6 @@ class WorkOrderOptionsFragment : Fragment() {
     }
 
     private fun setUpVineyardDropDown() {
-
         val items = getVineyards()
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         val autoCompleteTextView = (binding.vineyardDropdownMenu.editText as? AutoCompleteTextView)
@@ -91,6 +97,20 @@ class WorkOrderOptionsFragment : Fragment() {
         val autoCompleteTextView = (binding.uom.editText as? AutoCompleteTextView)
 
         autoCompleteTextView?.setAdapter(adapter)
+    }
+
+    private fun setUpBlockDropDown() {
+        workOrderViewModel.blocks.observe(viewLifecycleOwner, { blocks ->
+            val adapter = ArrayAdapter(requireContext(), R.layout.list_item, blocks)
+            val autoCompleteTextView = (binding.blockName.editText as? AutoCompleteTextView)
+
+            if (blocks.isNotEmpty())
+                autoCompleteTextView?.setText(blocks[0], false)
+            else
+                autoCompleteTextView?.text?.clear()
+
+            autoCompleteTextView?.setAdapter(adapter)
+        })
     }
 
     private fun setUpDateSelect() {
@@ -153,6 +173,20 @@ class WorkOrderOptionsFragment : Fragment() {
         }
     }
 
+    private fun setBlockButtons() {
+        binding.addBlockButton.setOnClickListener {
+            addBlockButtonOnClick()
+        }
+
+        binding.removeBlockButton.setOnClickListener {
+            removeBlockButtonOnClick()
+        }
+
+        binding.viewBlocksButton.setOnClickListener {
+            viewBlocksButtonOnClick()
+        }
+    }
+
     private fun addProductButtonOnClick() {
         // check if name and amount and uom is not empty
         val name = isTextFieldEmpty(binding.productNameText, binding.productName, "Name")
@@ -173,6 +207,17 @@ class WorkOrderOptionsFragment : Fragment() {
         }
     }
 
+    private fun addBlockButtonOnClick() {
+        val block = isTextFieldEmpty(binding.blockNameAutoComplete, binding.blockName)
+        if (block) {
+            val blockName = binding.blockNameAutoComplete.text.toString()
+            if (workOrderViewModel.addBlock(blockName))
+               showToast("$blockName was added")
+            else
+                showToast("$blockName already exists")
+        }
+    }
+
     private fun removeProductButtonOnClick() {
         val name = isTextFieldEmpty(binding.productNameText, binding.productName, "Name")
         if (name) {
@@ -185,27 +230,57 @@ class WorkOrderOptionsFragment : Fragment() {
         }
     }
 
+    private fun removeBlockButtonOnClick() {
+        val block = isTextFieldEmpty(binding.blockNameAutoComplete, binding.blockName)
+        if (block) {
+            val blockName = binding.blockNameAutoComplete.text.toString()
+            if (workOrderViewModel.removeBlock(blockName))
+                showToast("$blockName was removed")
+            else
+                showToast("$blockName is not in the list")
+        }
+    }
+
     private fun viewProductButtonOnClick() {
+        viewItemsDialog(getString(R.string.product), workOrderViewModel.getProductNameAmountAndUOM())
+    }
+
+    private fun viewBlocksButtonOnClick() {
+        viewItemsDialog(getString(R.string.block), workOrderViewModel.getBlockNamesAndAcres())
+    }
+
+    private fun viewItemsDialog(titleDialog: String, items: List<String>) {
         MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
             .setNegativeButton("Dismiss") { dialog, which ->
                 // Respond to negative button press
             }
-            .setView(getListLayout(layoutInflater))
+            .setView(getListLayout(layoutInflater, titleDialog, items))
             .show()
     }
 
-    private fun getListLayout(inflater: LayoutInflater): View? {
+    private fun getListLayout(inflater: LayoutInflater, titleDialog: String, items: List<String>): View? {
         val dialogLayout = inflater.inflate(R.layout.product_list_alert_dialog, null)
+
         val title = dialogLayout.findViewById<TextView>(R.id.title)
-        title.text = getString(R.string.product)
+        title.text = titleDialog
+
         val recyclerView = dialogLayout.findViewById<RecyclerView>(R.id.list_wo_recycler_view)
-        recyclerView.adapter = AlertDialogListAdapter(requireContext(), workOrderViewModel.getProductNameAmountAndUOM())
+        recyclerView.adapter = AlertDialogListAdapter(requireContext(), items)
+
         return dialogLayout
     }
 
     private fun isTextFieldEmpty(textInputEditText: TextInputEditText, textInputLayout: TextInputLayout, objectRequired: String): Boolean {
         return if (textInputEditText.text.isNullOrBlank() || textInputEditText.text.isNullOrEmpty()) {
             textInputLayout.error = "$objectRequired required"
+            false
+        } else
+            true
+    }
+
+    private fun isTextFieldEmpty(autoCompleteTextView: AutoCompleteTextView, textInputLayout: TextInputLayout): Boolean {
+        return if (autoCompleteTextView.text.isNullOrBlank() || autoCompleteTextView.text.isNullOrEmpty()) {
+            textInputLayout.error = "Block name required"
             false
         } else
             true
@@ -220,6 +295,19 @@ class WorkOrderOptionsFragment : Fragment() {
             // if error, when user starts typing, remove error
             textInputLayout.error = null
         }
+    }
+
+    private fun clearWorkOrder() {
+        workOrderViewModel.clearWorkOrder()
+        binding.vineyardAutocomplete.text.clear()
+        binding.typeAutocomplete.text.clear()
+        binding.mainProductText.text?.clear()
+        binding.applicationDate.text = getString(R.string.application_date_is, "")
+        binding.tankSizeText.text?.clear()
+        binding.tanksText.text?.clear()
+        binding.specialInstructionsText.text?.clear()
+        binding.productNameText.text?.clear()
+        binding.productAmountText.text?.clear()
     }
 
     private fun generateWorkOrderPDF() {
@@ -241,7 +329,7 @@ class WorkOrderOptionsFragment : Fragment() {
 
                 // location and total acres
                 view.findViewById<TextView>(R.id.location).text = "${workOrderViewModel.getVineyard()} Winery, Angwin, Napa County, CA 95408"
-                view.findViewById<TextView>(R.id.totalAcres).text = "2.55 ac"
+                view.findViewById<TextView>(R.id.totalAcres).text = "${workOrderViewModel.getTotalAcres()} ac"
 
                 // extra info
                 view.findViewById<TextView>(R.id.tankSize).text = workOrderViewModel.getTankSizeString()
@@ -255,10 +343,10 @@ class WorkOrderOptionsFragment : Fragment() {
 
             private fun setWorkOrderLists(view: View) {
                 // set block List
-                setListView(listOf("02", "03", "04A"), view.findViewById(R.id.blockList))
+                setListView(workOrderViewModel.getBlockNames(), view.findViewById(R.id.blockList))
 
-                // set block area list
-                setListView(listOf("1.09 ac", "0.18 ac", "0.53 ac"), view.findViewById(R.id.blockAreaList))
+                // set block acre list
+                setListView(workOrderViewModel.getBlockAcres(), view.findViewById(R.id.blockAreaList))
 
                 // set product list
                 setListView(workOrderViewModel.getProductList(), view.findViewById(R.id.productList))

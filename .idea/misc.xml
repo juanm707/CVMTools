@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/layout/fragment_edit_row_vine_count.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/fragment_work_order_options.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/fragment_work_order_options.xml" value="0.33" />
         <entry key="app/src/main/res/layout/invoice.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/product_list_alert_dialog.xml" value="0.25" />
@@ -34,7 +34,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.45" />
+        <option name="scale" value="0.33" />
       </ProjectState>
     </option>
   </component>
