@@ -255,11 +255,11 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="Add product button"
         android:src="@drawable/ic_round_add_24"
-        app:layout_constraintBottom_toBottomOf="@+id/uom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/uom"
+        app:layout_constraintTop_toBottomOf="@+id/productName"
         app:tint="@color/primaryColor" />
 
     <ImageButton
@@ -267,12 +267,12 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="Add product button"
         android:src="@drawable/ic_round_remove_24"
-        app:layout_constraintBottom_toBottomOf="@+id/uom"
         app:layout_constraintEnd_toStartOf="@id/viewProductsButton"
         app:layout_constraintStart_toEndOf="@id/addProductButton"
-        app:layout_constraintTop_toTopOf="@+id/uom"
+        app:layout_constraintTop_toBottomOf="@+id/productName"
         app:tint="@color/primaryColor" />
 
     <ImageButton
@@ -280,12 +280,12 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="Add product button"
         android:src="@drawable/ic_baseline_remove_red_eye_24"
-        app:layout_constraintBottom_toBottomOf="@+id/uom"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/uom"
+        app:layout_constraintTop_toBottomOf="@+id/productName"
         app:tint="@color/primaryColor" />
 
     <Button

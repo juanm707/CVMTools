@@ -3,7 +3,6 @@ package com.example.cvmtools.model
 import androidx.lifecycle.ViewModel
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.round
 
 class WorkOrderViewModel : ViewModel() {
 
@@ -149,6 +148,14 @@ class WorkOrderViewModel : ViewModel() {
         }
     }
 
+    fun removeProduct(productName: String): Boolean {
+        return if (workOrder.productList.containsKey(productName)) {
+            workOrder.productList.remove(productName)
+            true
+        } else
+            false
+    }
+
     private fun getUOMFromString(uom: String): UOM {
         return when (uom) {
             "None" -> UOM.NONE
@@ -179,6 +186,12 @@ class WorkOrderViewModel : ViewModel() {
     fun getProductAmountAndUOM(): List<String> {
         return workOrder.productList.map { product ->
             "${roundTwoDecimals(product.value.amount)} ${getStringFromUOM(product.value.uom)}"
+        }
+    }
+
+    fun getProductNameAmountAndUOM(): List<String> {
+        return workOrder.productList.map { product ->
+            "${product.key} ${roundTwoDecimals(product.value.amount)} ${getStringFromUOM(product.value.uom)}"
         }
     }
 

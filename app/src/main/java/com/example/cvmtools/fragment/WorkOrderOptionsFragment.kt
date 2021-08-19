@@ -11,10 +11,13 @@ import androidx.core.content.FileProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cvmtools.R
+import com.example.cvmtools.adapter.AlertDialogListAdapter
 import com.example.cvmtools.databinding.FragmentWorkOrderOptionsBinding
 import com.example.cvmtools.model.WorkOrderViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.hendrix.pdfmyxml.PdfDocument
@@ -138,34 +141,74 @@ class WorkOrderOptionsFragment : Fragment() {
         setTextChangeListener(binding.productAmountText, binding.productAmount)
         
         binding.addProductButton.setOnClickListener { 
-            // check if name and amount and uom is not empty
-            var name = false
-            var amount = false
-            
-            if (binding.productNameText.text.isNullOrBlank() || binding.productNameText.text.isNullOrEmpty()) {
-                binding.productName.error = "Name required"
-            } else
-                name = true
-
-            if (binding.productAmountText.text.isNullOrBlank() || binding.productAmountText.text.isNullOrEmpty()) {
-                binding.productAmount.error = "Amount required"
-            } else
-                amount = true
-            
-            // if name and amount present
-            if (name && amount) {
-
-                val productName = binding.productNameText.text.toString()
-                val productAmount = binding.productAmountText.text.toString()
-                val uom = binding.uomAutoComplete.text.toString()
-
-                // returns true if added, false if not duplicate, same amount, same name
-                if (workOrderViewModel.addProduct(productName, productAmount.toFloat(), uom))
-                    showToast("$productName was added")
-                else
-                    showToast("$productName already exists")
-            }
+            addProductButtonOnClick()
         }
+
+        binding.removeProductButton.setOnClickListener {
+            removeProductButtonOnClick()
+        }
+
+        binding.viewProductsButton.setOnClickListener {
+            viewProductButtonOnClick()
+        }
+    }
+
+    private fun addProductButtonOnClick() {
+        // check if name and amount and uom is not empty
+        val name = isTextFieldEmpty(binding.productNameText, binding.productName, "Name")
+        val amount = isTextFieldEmpty(binding.productAmountText, binding.productAmount, "Amount")
+
+        // if name and amount present
+        if (name && amount) {
+
+            val productName = binding.productNameText.text.toString()
+            val productAmount = binding.productAmountText.text.toString()
+            val uom = binding.uomAutoComplete.text.toString()
+
+            // returns true if added, false if duplicate, same amount, same name
+            if (workOrderViewModel.addProduct(productName, productAmount.toFloat(), uom))
+                showToast("$productName was added")
+            else
+                showToast("$productName already exists")
+        }
+    }
+
+    private fun removeProductButtonOnClick() {
+        val name = isTextFieldEmpty(binding.productNameText, binding.productName, "Name")
+        if (name) {
+            val productName = binding.productNameText.text.toString()
+            // returns true if removed, false if not in list
+            if (workOrderViewModel.removeProduct(productName))
+                showToast("$productName was removed")
+            else
+                showToast("$productName is not in the list")
+        }
+    }
+
+    private fun viewProductButtonOnClick() {
+        MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
+            .setNegativeButton("Dismiss") { dialog, which ->
+                // Respond to negative button press
+            }
+            .setView(getListLayout(layoutInflater))
+            .show()
+    }
+
+    private fun getListLayout(inflater: LayoutInflater): View? {
+        val dialogLayout = inflater.inflate(R.layout.product_list_alert_dialog, null)
+        val title = dialogLayout.findViewById<TextView>(R.id.title)
+        title.text = getString(R.string.product)
+        val recyclerView = dialogLayout.findViewById<RecyclerView>(R.id.list_wo_recycler_view)
+        recyclerView.adapter = AlertDialogListAdapter(requireContext(), workOrderViewModel.getProductNameAmountAndUOM())
+        return dialogLayout
+    }
+
+    private fun isTextFieldEmpty(textInputEditText: TextInputEditText, textInputLayout: TextInputLayout, objectRequired: String): Boolean {
+        return if (textInputEditText.text.isNullOrBlank() || textInputEditText.text.isNullOrEmpty()) {
+            textInputLayout.error = "$objectRequired required"
+            false
+        } else
+            true
     }
 
     private fun showToast(message: String) {
