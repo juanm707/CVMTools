@@ -40,11 +40,23 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/checklistTitle"
         tools:listitem="@layout/checklist_item"/>
+
+    <TextView
+        android:id="@+id/selectAreaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a vehicle area to get started"
+        android:textColor="@color/secondaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checklistTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,6 +25,10 @@
             app:destination="@id/workOrderOptionsFragment" />
         <action
             android:id="@+id/action_selectTaskFragment_to_vehicleChecklistFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
             app:destination="@id/vehicleChecklistFragment" />
     </fragment>
     <fragment

@@ -13,12 +13,12 @@
         <entry key="app/src/main/res/drawable/vineyardbackground.xml" value="1.0" />
         <entry key="app/src/main/res/layout/block_item.xml" value="0.5740479548660085" />
         <entry key="app/src/main/res/layout/block_list_wo_item.xml" value="0.9" />
-        <entry key="app/src/main/res/layout/checklist_item.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/checklist_item.xml" value="0.36363636363636365" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_edit_row_vine_count.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/fragment_vehicle_checklist.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_vehicle_checklist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_work_order_options.xml" value="0.33" />
         <entry key="app/src/main/res/layout/invoice.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.5" />

@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvmtools.R
+import com.example.cvmtools.model.ChecklistItemList
+import com.google.android.material.checkbox.MaterialCheckBox
 
-class ChecklistItemAdapter : RecyclerView.Adapter<ChecklistItemAdapter.ChecklistItemViewHolder>() {
+class ChecklistItemAdapter(private val list: ChecklistItemList, private val checkBoxListener: OnListCheckBoxListener) : RecyclerView.Adapter<ChecklistItemAdapter.ChecklistItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChecklistItemViewHolder {
         val layout = LayoutInflater
@@ -17,17 +19,24 @@ class ChecklistItemAdapter : RecyclerView.Adapter<ChecklistItemAdapter.Checklist
     }
 
     override fun onBindViewHolder(holder: ChecklistItemViewHolder, position: Int) {
-        holder.checklistItem.text = "Lights"
+        val item = list.itemList[position]
+        holder.checklistItem.text = item.itemName
+        holder.checklistBox.isChecked = item.checked
+        holder.checklistBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkBoxListener.onCheckboxClick(holder.adapterPosition, isChecked)
+        }
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return list.itemList.size
     }
 
     class ChecklistItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val checklistItem: TextView = itemView.findViewById(R.id.checklistItem)
+        val checklistBox: MaterialCheckBox = itemView.findViewById(R.id.checklistBox)
     }
 
+    interface OnListCheckBoxListener {
+        fun onCheckboxClick(position: Int, isChecked: Boolean) {}
+    }
 }
-
-

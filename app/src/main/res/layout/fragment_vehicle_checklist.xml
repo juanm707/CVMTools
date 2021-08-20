@@ -148,7 +148,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/work_order_grey_fill" />
+                        app:tint="@color/purple_200" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
