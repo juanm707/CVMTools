@@ -1,19 +1,28 @@
 package com.example.cvmtools.fragment
 
 import android.animation.ValueAnimator
+import android.content.DialogInterface
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
+import com.example.cvmtools.R
+import com.example.cvmtools.adapter.AlertDialogListAdapter
 import com.example.cvmtools.adapter.ChecklistItemAdapter
 import com.example.cvmtools.databinding.FragmentVehicleChecklistBinding
 import com.example.cvmtools.model.ChecklistSection
 import com.example.cvmtools.model.VehicleChecklistViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBoxListener {
@@ -21,6 +30,7 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
     private val vehicleChecklistViewModel: VehicleChecklistViewModel by viewModels()
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private lateinit var commentEditText: EditText
 
     private var _binding: FragmentVehicleChecklistBinding? = null
     private val binding get() = _binding!!
@@ -34,12 +44,14 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setUpBottomSheet()
         binding.bottomSheetLayout.checklistItemsRecyclerView.setHasFixedSize(true)
         setUpFAB()
+        setUpScrollViewListener()
     }
 
     override fun onDestroy() {
@@ -55,6 +67,14 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun setUpScrollViewListener() {
+        binding.vehicleScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+    }
+
     private fun openOrCloseBottomSheet() {
         if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -67,6 +87,11 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
     }
 
     private fun setUpFAB() {
+
+        binding.submitFAB.setOnClickListener {
+            viewCommentDialog()
+        }
+
         binding.lightFAB.setOnClickListener {
            setChecklist(ChecklistSection.LIGHT)
         }
@@ -131,5 +156,23 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
         }
         anim.duration = duration
         return anim
+    }
+
+    private fun viewCommentDialog() {
+        MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
+            .setPositiveButton("Send") { dialog, which ->
+                vehicleChecklistViewModel.setComment(commentEditText.text.toString())
+            }
+            .setNegativeButton("Dismiss") { dialog, which ->
+                // Respond to negative button press
+            }
+            .setView(getListLayout(layoutInflater))
+            .show()
+    }
+
+    private fun getListLayout(inflater: LayoutInflater): View? {
+        val dialogLayout = inflater.inflate(R.layout.checklist_submit_alert_dialog, null)
+        commentEditText = dialogLayout.findViewById(R.id.commentTextInputEditText)
+        return dialogLayout
     }
 }

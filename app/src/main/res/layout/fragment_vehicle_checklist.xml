@@ -11,12 +11,13 @@
         android:layout_height="match_parent">
 
         <HorizontalScrollView
+            android:id="@+id/vehicleScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/guideline3">
+            app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -26,9 +27,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
+                    android:contentDescription="Vehicle"
                     android:padding="8dp"
-                    android:src="@drawable/vehicle"
-                    android:contentDescription="Vehicle" />
+                    android:src="@drawable/vehicle" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -42,11 +43,11 @@
                         android:layout_marginTop="225dp"
                         android:backgroundTint="@color/primaryColorVariant"
                         android:src="@drawable/ic_baseline_lightbulb_24"
-                        app:fabSize="mini"
                         app:borderWidth="0dp"
-                        app:tint="#FFF200"
+                        app:fabSize="mini"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#FFF200" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/tireFAB"
@@ -162,6 +163,21 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.65" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/submitFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:src="@drawable/ic_round_file_upload_24"
+            app:fabSize="mini"
+            app:borderWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/primaryColor"
+            android:contentDescription="Submit button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,13 +6,14 @@ import androidx.lifecycle.ViewModel
 
 class VehicleChecklistViewModel : ViewModel() {
 
-    private val _allChecklists = MutableLiveData<MutableMap<ChecklistSection, ChecklistItemList>>()
+    private val _allChecklists = MutableLiveData<MutableMap<ChecklistSection, ChecklistItemList>>(mutableMapOf())
     val allChecklists: LiveData<MutableMap<ChecklistSection, ChecklistItemList>> = _allChecklists
 
     var currentSection = ChecklistSection.LIGHT
 
+    private var comment: String = ""
+
     init {
-        _allChecklists.value = mutableMapOf()
         initializeAllChecklists()
     }
 
@@ -37,6 +38,10 @@ class VehicleChecklistViewModel : ViewModel() {
             ChecklistSection.CLEAN -> "Body"
             ChecklistSection.REAR -> "Rear"
         }
+    }
+
+    fun setComment(newComment: String) {
+        comment = newComment
     }
 
     private fun initializeAllChecklists() {
