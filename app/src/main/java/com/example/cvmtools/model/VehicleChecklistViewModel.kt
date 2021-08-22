@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class VehicleChecklistViewModel : ViewModel() {
 
-    private val _allChecklists = MutableLiveData<MutableMap<ChecklistSection, ChecklistItemList>>(mutableMapOf())
-    val allChecklists: LiveData<MutableMap<ChecklistSection, ChecklistItemList>> = _allChecklists
+    private var allChecklists = mutableMapOf<ChecklistSection, ChecklistItemList>()
 
     var currentSection = ChecklistSection.LIGHT
 
@@ -18,7 +17,7 @@ class VehicleChecklistViewModel : ViewModel() {
     }
 
     fun getList(section: ChecklistSection): ChecklistItemList? {
-        return _allChecklists.value?.get(section)
+        return allChecklists[section]
     }
 
     fun setItemChecked(position: Int, checked: Boolean) {
@@ -44,6 +43,22 @@ class VehicleChecklistViewModel : ViewModel() {
         comment = newComment
     }
 
+    fun getComment(): String {
+        return comment
+    }
+
+    fun getChecklistShareData(): StringBuilder {
+        // return the data to be shared for csv file
+        val data = StringBuilder()
+        data.append("Section,Item,Checked")
+        allChecklists.forEach { (section, checkList) ->
+            checkList.itemList.forEach { item ->
+                data.append("\n$section,${item.itemName},${item.checked}")
+            }
+        }
+        return data
+    }
+
     private fun initializeAllChecklists() {
         initializeLightChecklist()
         initializeInteriorChecklist()
@@ -64,7 +79,7 @@ class VehicleChecklistViewModel : ViewModel() {
             ChecklistItem("Clearance/Marker")
         )
 
-        _allChecklists.value?.set(section, ChecklistItemList(list))
+        allChecklists[section] = ChecklistItemList(list)
     }
 
     private fun initializeInteriorChecklist() {
@@ -78,7 +93,7 @@ class VehicleChecklistViewModel : ViewModel() {
             ChecklistItem("Windshield Wipers"),
         )
 
-        _allChecklists.value?.set(section, ChecklistItemList(list))
+        allChecklists[section] = ChecklistItemList(list)
     }
 
     private fun initializeEngineChecklist() {
@@ -97,7 +112,7 @@ class VehicleChecklistViewModel : ViewModel() {
             ChecklistItem("Transmission")
         )
 
-        _allChecklists.value?.set(section, ChecklistItemList(list))
+        allChecklists[section] = ChecklistItemList(list)
     }
 
     private fun initializeEmergencyChecklist() {
@@ -110,22 +125,22 @@ class VehicleChecklistViewModel : ViewModel() {
             ChecklistItem("Spare Seal Beam")
         )
 
-        _allChecklists.value?.set(section, ChecklistItemList(list))
+        allChecklists[section] = ChecklistItemList(list)
     }
 
     private fun initializeTireChecklist() {
         val section = ChecklistSection.TIRE
         val list = mutableListOf(
             ChecklistItem("Brake Accessories"),
-            ChecklistItem("Brake, Parking"),
-            ChecklistItem("Brake, Service"),
+            ChecklistItem("Brake - Parking"),
+            ChecklistItem("Brake - Service"),
             ChecklistItem("Front Axle"),
             ChecklistItem("Tire Chains"),
             ChecklistItem("Tires"),
             ChecklistItem("Wheels and Rims")
         )
 
-        _allChecklists.value?.set(section, ChecklistItemList(list))
+        allChecklists[section] = ChecklistItemList(list)
     }
 
     private fun initializeFuelChecklist() {
@@ -134,7 +149,7 @@ class VehicleChecklistViewModel : ViewModel() {
             ChecklistItem("Fuel Tanks")
         )
 
-        _allChecklists.value?.set(section, ChecklistItemList(list))
+        allChecklists[section] = ChecklistItemList(list)
     }
 
     private fun initializeCleanChecklist() {
@@ -146,7 +161,7 @@ class VehicleChecklistViewModel : ViewModel() {
             ChecklistItem("Suspension System"),
         )
 
-        _allChecklists.value?.set(section, ChecklistItemList(list))
+        allChecklists[section] = ChecklistItemList(list)
     }
 
     private fun initializeRearChecklist() {
@@ -158,6 +173,6 @@ class VehicleChecklistViewModel : ViewModel() {
             ChecklistItem("Trunk/Storage"),
         )
 
-        _allChecklists.value?.set(section, ChecklistItemList(list))
+        allChecklists[section] = ChecklistItemList(list)
     }
 }

@@ -127,6 +127,5 @@ class RowVineCountFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 }

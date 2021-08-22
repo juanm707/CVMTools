@@ -1,7 +1,10 @@
 package com.example.cvmtools.fragment
 
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +16,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.FileProvider
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvmtools.R
@@ -23,6 +27,10 @@ import com.example.cvmtools.model.ChecklistSection
 import com.example.cvmtools.model.VehicleChecklistViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.io.File
+import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBoxListener {
@@ -70,8 +78,10 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setUpScrollViewListener() {
         binding.vehicleScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                getAnimationForArrow(binding.bottomSheetLayout.checklistUpIcon, 180F, 0F, 200).start()
+            }
         }
     }
 
@@ -162,6 +172,7 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
         MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
             .setPositiveButton("Send") { dialog, which ->
                 vehicleChecklistViewModel.setComment(commentEditText.text.toString())
+                shareChecklist()
             }
             .setNegativeButton("Dismiss") { dialog, which ->
                 // Respond to negative button press
@@ -174,5 +185,40 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
         val dialogLayout = inflater.inflate(R.layout.checklist_submit_alert_dialog, null)
         commentEditText = dialogLayout.findViewById(R.id.commentTextInputEditText)
         return dialogLayout
+    }
+
+    private fun shareChecklist() {
+        //generate data
+        val data = vehicleChecklistViewModel.getChecklistShareData()
+
+        try {
+            //saving the file into device
+            val sdf = SimpleDateFormat("MM-dd-yyyy", Locale.US)
+            sdf.timeZone = TimeZone.getDefault()
+            val date = sdf.format(Date())
+
+            val fileName = "Vehicle_Checklist_$date.csv"
+            val out: FileOutputStream = (requireContext().openFileOutput(fileName, Context.MODE_PRIVATE) ?: null) as FileOutputStream
+            out.write(data.toString().toByteArray(Charsets.UTF_8))
+            out.close()
+
+            val fileLocation = File(requireContext().filesDir, fileName)
+            val path: Uri = FileProvider.getUriForFile(requireContext(), "com.example.cvmtools.fileprovider", fileLocation)
+
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "Hello there, here is the vehicle checklist for $date\nComment: ${vehicleChecklistViewModel.getComment()}")
+                putExtra(Intent.EXTRA_SUBJECT, "$date Vehicle Checklist")
+                putExtra(Intent.EXTRA_STREAM, path)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                type = "text/csv"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
