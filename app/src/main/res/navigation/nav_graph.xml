@@ -30,6 +30,13 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:destination="@id/vehicleChecklistFragment" />
+        <action
+            android:id="@+id/action_selectTaskFragment_to_diseaseImageLabelingFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:destination="@id/diseaseImageLabelingFragment" />
     </fragment>
     <fragment
         android:id="@+id/rowVineCountFragment"
@@ -74,6 +81,11 @@
     <fragment
         android:id="@+id/vehicleChecklistFragment"
         android:name="com.example.cvmtools.fragment.VehicleChecklistFragment"
-        android:label="Vehicle Inspection"
+        android:label="@string/vehicle_inspection"
         tools:layout="@layout/fragment_vehicle_checklist" />
+    <fragment
+        android:id="@+id/diseaseImageLabelingFragment"
+        android:name="com.example.cvmtools.fragment.DiseaseImageLabelingFragment"
+        android:label="@string/crop_disease_labeling"
+        tools:layout="@layout/fragment_disease_image_labeling" />
 </navigation>

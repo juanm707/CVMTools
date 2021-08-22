@@ -207,7 +207,7 @@ class VehicleChecklistFragment : Fragment(), ChecklistItemAdapter.OnListCheckBox
 
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Hello there, here is the vehicle checklist for $date\nComment: ${vehicleChecklistViewModel.getComment()}")
+                putExtra(Intent.EXTRA_TEXT, "Hello, here is the vehicle checklist for $date\nComment: ${vehicleChecklistViewModel.getComment()}")
                 putExtra(Intent.EXTRA_SUBJECT, "$date Vehicle Checklist")
                 putExtra(Intent.EXTRA_STREAM, path)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)

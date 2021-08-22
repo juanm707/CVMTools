@@ -114,7 +114,7 @@ class RowVineCountFragment : Fragment() {
 
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Hello there, ${viewModel.vineyard.value} Row Vine Counts")
+                putExtra(Intent.EXTRA_TEXT, "Hello, ${viewModel.vineyard.value} Row Vine Counts")
                 putExtra(Intent.EXTRA_SUBJECT, "${viewModel.vineyard.value} Row Vine Counts")
                 putExtra(Intent.EXTRA_STREAM, path)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)

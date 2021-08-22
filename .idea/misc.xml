@@ -4,18 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bottom_sheet_background.xml" value="0.2936936936936937" />
+        <entry key="app/src/main/res/drawable/car_icon.xml" value="0.30185185185185187" />
         <entry key="app/src/main/res/drawable/foreground_gradient.xml" value="0.33958333333333335" />
+        <entry key="app/src/main/res/drawable/grapes.xml" value="0.30185185185185187" />
         <entry key="app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.33958333333333335" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.33958333333333335" />
         <entry key="app/src/main/res/drawable/ic_baseline_highlight_off_24.xml" value="0.33958333333333335" />
         <entry key="app/src/main/res/drawable/pdf.xml" value="0.2936936936936937" />
         <entry key="app/src/main/res/drawable/vehicle.xml" value="0.2936936936936937" />
         <entry key="app/src/main/res/drawable/vineyardbackground.xml" value="1.0" />
-        <entry key="app/src/main/res/layout/block_item.xml" value="0.5740479548660085" />
+        <entry key="app/src/main/res/layout/block_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/block_list_wo_item.xml" value="0.9" />
-        <entry key="app/src/main/res/layout/checklist_item.xml" value="0.36363636363636365" />
-        <entry key="app/src/main/res/layout/checklist_submit_alert_dialog.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/checklist_item.xml" value="0.5499383477188656" />
+        <entry key="app/src/main/res/layout/checklist_submit_alert_dialog.xml" value="0.67" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_disease_image_labeling.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_edit_row_vine_count.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.67" />
@@ -40,7 +43,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.2" />
+        <option name="scale" value="0.12" />
       </ProjectState>
     </option>
   </component>
