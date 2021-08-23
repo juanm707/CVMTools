@@ -10,7 +10,7 @@ For a row vine count task, users select which vineyard they are at. The blocks f
 <img src="https://github.com/juanm707/CVMTools/blob/master/examples/row_vine_counts.gif" width=230 height=500 /><img src="https://github.com/juanm707/CVMTools/blob/master/examples/email_rvc.png" width=500 height=300 /><img src="https://github.com/juanm707/CVMTools/blob/master/examples/rvc_csvsheet.png" width=350 height=275 />
 
 ### Generate Work Order
-For generating a spray work order, users can select the vineyard, type of chemical use like fungicide, herbicide etc... Need to enter the main product used, when the spray is going to be, tank size and tanks, and special instructions. Uses also need to add/remove the products use and blocks being sprayed. Once it is ready, users press the generate work order button, and opens up the pdf which can be downloaded or shared. 
+For generating a spray work order, users can select the vineyard, type of chemical use like fungicide, herbicide etc... Need to enter the main product used, when the spray is going to be, tank size and tanks, and special instructions. Users also need to add/remove the products use and blocks being sprayed. Once it is ready, users press the generate work order button, and opens up the pdf which can be downloaded or shared. 
 
 <img src="https://github.com/juanm707/CVMTools/blob/master/examples/work_order_generator.gif" width=230 height=500 /><img src="https://github.com/juanm707/CVMTools/blob/master/examples/work_order_email.png" width=500 height=300 /><img src="https://github.com/juanm707/CVMTools/blob/master/examples/work_order_pdf.png" width=350 height=275 />
 
