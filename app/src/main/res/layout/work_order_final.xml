@@ -449,7 +449,7 @@
                     android:background="@color/work_order_grey_fill"
                     android:fontFamily="@font/montserrat"
                     android:padding="4px"
-                    android:text="Application Method"
+                    android:text="Method"
                     android:textColor="@color/black"
                     android:textSize="30px"
                     android:textStyle="bold"
