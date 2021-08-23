@@ -16,7 +16,9 @@ import com.example.cvmtools.ImageShimmer
 import com.example.cvmtools.R
 import com.example.cvmtools.databinding.FragmentDiseaseImageLabelingBinding
 import com.facebook.shimmer.ShimmerDrawable
+import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.label.ImageLabelerOptionsBase
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import java.io.IOException
@@ -52,6 +54,10 @@ class DiseaseImageLabelingFragment : Fragment() {
         binding.labelImageButton.setOnClickListener {
             selectImage()
         }
+
+        binding.contentImage.setOnClickListener {
+            selectImage()
+        }
     }
 
     override fun onDestroy() {
@@ -67,9 +73,18 @@ class DiseaseImageLabelingFragment : Fragment() {
         }
 
         binding.contentImage.load(uri) {
+            crossfade(true)
+            crossfade(500)
             placeholder(shimmerDrawable)
             error(R.drawable.ic_baseline_broken_image_24)
         }
+
+//        val localModel = LocalModel.Builder()
+//            .setAbsoluteFilePath("/Users/juanmartinez/AndroidStudioProjects/CVMTools/app/src/main/ml/lite-model_disease-classification_1.tflite")
+//            .build()
+//
+//        val labeler = ImageLabeling.getClient()
+
 
         val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
         labeler.process(image)
