@@ -3,6 +3,7 @@ package com.example.cvmtools.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.lang.IndexOutOfBoundsException
 
 class VehicleChecklistViewModel : ViewModel() {
 
@@ -22,8 +23,12 @@ class VehicleChecklistViewModel : ViewModel() {
 
     fun setItemChecked(position: Int, checked: Boolean) {
         val currentList = getList(currentSection)
-        if (currentList != null)
-            currentList.itemList[position].checked = checked
+        if (currentList != null) {
+            if (position < 0 || position >= currentList.itemList.size)
+                throw IndexOutOfBoundsException("Index out of range.")
+            else
+                currentList.itemList[position].checked = checked
+        }
     }
 
     fun getTitleSection(section: ChecklistSection): String {

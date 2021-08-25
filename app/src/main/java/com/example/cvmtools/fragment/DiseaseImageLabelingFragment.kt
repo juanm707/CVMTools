@@ -79,13 +79,6 @@ class DiseaseImageLabelingFragment : Fragment() {
             error(R.drawable.ic_baseline_broken_image_24)
         }
 
-//        val localModel = LocalModel.Builder()
-//            .setAbsoluteFilePath("/Users/juanmartinez/AndroidStudioProjects/CVMTools/app/src/main/ml/lite-model_disease-classification_1.tflite")
-//            .build()
-//
-//        val labeler = ImageLabeling.getClient()
-
-
         val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
         labeler.process(image)
             .addOnSuccessListener { labels ->

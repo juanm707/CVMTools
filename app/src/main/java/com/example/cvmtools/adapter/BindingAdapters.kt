@@ -1,4 +1,4 @@
-package com.example.cvmtools
+package com.example.cvmtools.adapter
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
